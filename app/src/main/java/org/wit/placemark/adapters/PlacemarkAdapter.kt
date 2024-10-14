@@ -12,7 +12,6 @@ class PlacemarkAdapter constructor(private var placemarks: List<PlacemarkModel>)
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainHolder {
         val binding = CardPlacemarkBinding
             .inflate(LayoutInflater.from(parent.context), parent, false)
-
         return MainHolder(binding)
     }
 
