@@ -23,11 +23,19 @@
             app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbarAdd"
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:titleTextColor="@color/colorPrimary" />
+                app:titleTextColor="@color/colorPrimary"/>
+<!--                app:title="@string/button_addPlacemark"-->
         </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scrollbars="vertical"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
         <ScrollView
             android:layout_width="match_parent"
