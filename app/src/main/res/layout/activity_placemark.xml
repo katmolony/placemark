@@ -60,7 +60,8 @@
                     android:maxLines="1"
                     android:padding="8dp"
                     android:textColor="@color/colorPrimaryDark"
-                    android:textSize="14sp" />
+                    android:textSize="14sp"
+                    />
 
                 <EditText
                     android:id="@+id/description"
@@ -83,9 +84,11 @@
                     android:background="@color/colorAccent"
                     android:padding="8dp"
                     android:stateListAnimator="@null"
-                    android:text="@string/button_addPlacemark"
                     android:textColor="@color/colorPrimary"
-                    android:textSize="16sp" />
+                    android:textSize="16sp"
+                    android:text="@string/button_addPlacemark"
+                    />
+
             </LinearLayout>
         </ScrollView>
 
