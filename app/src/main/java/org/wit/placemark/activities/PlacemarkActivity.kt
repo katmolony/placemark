@@ -15,6 +15,7 @@ import org.wit.placemark.databinding.ActivityPlacemarkBinding
 import org.wit.placemark.helpers.showImagePicker
 import org.wit.placemark.main.MainApp
 import org.wit.placemark.models.PlacemarkModel
+import org.wit.placemark.models.Location
 import timber.log.Timber
 import timber.log.Timber.i
 
@@ -22,7 +23,9 @@ class PlacemarkActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPlacemarkBinding
     private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
+    private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
     var placemark = PlacemarkModel()
+    // var location = Location(52.245696, -7.139102, 15f)
     lateinit var app: MainApp
 
 
@@ -76,11 +79,20 @@ class PlacemarkActivity : AppCompatActivity() {
             showImagePicker(imageIntentLauncher)
         }
 
-        registerImagePickerCallback()
-
         binding.placemarkLocation.setOnClickListener {
-            i ("Set Location Pressed")
+            val location = Location(52.245696, -7.139102, 15f)
+            if (placemark.zoom != 0f) {
+                location.lat =  placemark.lat
+                location.lng = placemark.lng
+                location.zoom = placemark.zoom
+            }
+            val launcherIntent = Intent(this, MapActivity::class.java)
+                .putExtra("location", location)
+            mapIntentLauncher.launch(launcherIntent)
         }
+
+        registerImagePickerCallback()
+        registerMapCallback()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -115,4 +127,25 @@ class PlacemarkActivity : AppCompatActivity() {
                 }
             }
     }
+
+    private fun registerMapCallback() {
+        mapIntentLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+            { result ->
+                when (result.resultCode) {
+                    RESULT_OK -> {
+                        if (result.data != null) {
+                            i("Got Location ${result.data.toString()}")
+                            val location = result.data!!.extras?.getParcelable<Location>("location")!!
+                            i("Location == $location")
+                            placemark.lat = location.lat
+                            placemark.lng = location.lng
+                            placemark.zoom = location.zoom
+                        } // end of if
+                    }
+                    RESULT_CANCELED -> { } else -> { }
+                }
+            }
+    }
+
 }
