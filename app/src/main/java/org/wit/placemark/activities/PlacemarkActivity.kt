@@ -2,38 +2,35 @@ package org.wit.placemark.activities
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 import org.wit.placemark.R
 import org.wit.placemark.databinding.ActivityPlacemarkBinding
-import org.wit.placemark.helpers.showImagePicker
 import org.wit.placemark.main.MainApp
-import org.wit.placemark.models.PlacemarkModel
 import org.wit.placemark.models.Location
-import timber.log.Timber
+import org.wit.placemark.models.PlacemarkModel
 import timber.log.Timber.i
 
 class PlacemarkActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityPlacemarkBinding
+    var placemark = PlacemarkModel()
+    lateinit var app: MainApp
     private lateinit var imageIntentLauncher : ActivityResultLauncher<PickVisualMediaRequest>
     private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
-    var placemark = PlacemarkModel()
-    // var location = Location(52.245696, -7.139102, 15f)
-    lateinit var app: MainApp
-    var edit = false // add this
-
+    //var location = Location(52.245696, -7.139102, 15f)
+    var edit = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-//        var edit = false
+        //  edit = true
 
         binding = ActivityPlacemarkBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -46,16 +43,19 @@ class PlacemarkActivity : AppCompatActivity() {
 
         if (intent.hasExtra("placemark_edit")) {
             edit = true
+            //placemark = intent.getParcelableExtra("placemark_edit",PlacemarkModel::class.java)!!
             placemark = intent.extras?.getParcelable("placemark_edit")!!
             binding.placemarkTitle.setText(placemark.title)
             binding.description.setText(placemark.description)
             binding.btnAdd.setText(R.string.save_placemark)
+            i("IMG EDIT :: ${placemark.image}")
             Picasso.get()
                 .load(placemark.image)
                 .into(binding.placemarkImage)
             if (placemark.image != Uri.EMPTY) {
                 binding.chooseImage.setText(R.string.change_placemark_image)
             }
+
         }
 
         binding.btnAdd.setOnClickListener() {
@@ -112,7 +112,8 @@ class PlacemarkActivity : AppCompatActivity() {
                 setResult(99)
                 app.placemarks.delete(placemark)
                 finish()
-            }        R.id.item_cancel -> { finish() }
+            }
+            R.id.item_cancel -> { finish() }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -145,6 +146,7 @@ class PlacemarkActivity : AppCompatActivity() {
                     RESULT_OK -> {
                         if (result.data != null) {
                             i("Got Location ${result.data.toString()}")
+                            //val location = result.data!!.extras?.getParcelable("location",Location::class.java)!!
                             val location = result.data!!.extras?.getParcelable<Location>("location")!!
                             i("Location == $location")
                             placemark.lat = location.lat
@@ -156,5 +158,4 @@ class PlacemarkActivity : AppCompatActivity() {
                 }
             }
     }
-
 }
