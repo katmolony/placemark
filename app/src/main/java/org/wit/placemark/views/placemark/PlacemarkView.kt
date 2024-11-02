@@ -90,4 +90,8 @@ class PlacemarkView : AppCompatActivity() {
         binding.chooseImage.setText(R.string.change_placemark_image)
     }
 
+    fun showError(message: String) {
+        Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
+    }
+
 }

@@ -6,6 +6,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import org.wit.placemark.helpers.ValidationHelper
 import org.wit.placemark.views.editlocation.EditLocationView
 import org.wit.placemark.main.MainApp
 import org.wit.placemark.models.Location
@@ -32,6 +33,17 @@ class PlacemarkPresenter(val view: PlacemarkView) {
     }
 
     fun doAddOrSave(title: String, description: String) {
+        if (!ValidationHelper.isTextValid(title)) {
+            view.showError("Title can only contain letters.")
+            return
+        }
+        if (!ValidationHelper.isTextValid(description)) {
+            view.showError("Description can only contain letters.")
+            return
+        }
+
+        placemark.title = title
+        placemark.description = description
         placemark.title = title
         placemark.description = description
         if (edit) {
