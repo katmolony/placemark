@@ -32,6 +32,7 @@ class PlacemarkMemStore : PlacemarkStore {
         if (foundPlacemark != null) {
             foundPlacemark.title = placemark.title
             foundPlacemark.description = placemark.description
+            foundPlacemark.rating = placemark.rating
             foundPlacemark.image = placemark.image
             foundPlacemark.lat = placemark.lat
             foundPlacemark.lng = placemark.lng
