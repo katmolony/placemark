@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.recyclerview.widget.LinearLayoutManager
 import org.wit.placemark.R
 import org.wit.placemark.adapters.PlacemarkAdapter
@@ -20,6 +21,9 @@ class PlacemarkListView : AppCompatActivity(), PlacemarkListener {
     private var position: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Thread.sleep(3000)
+        installSplashScreen()
+
         super.onCreate(savedInstanceState)
         binding = ActivityPlacemarkListBinding.inflate(layoutInflater)
         setContentView(binding.root)

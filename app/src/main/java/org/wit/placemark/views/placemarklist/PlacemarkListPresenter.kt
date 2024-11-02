@@ -4,7 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import org.wit.placemark.activities.PlacemarkMapsActivity
+import org.wit.placemark.views.map.PlacemarkMapView
 import org.wit.placemark.views.placemark.PlacemarkView
 import org.wit.placemark.main.MainApp
 import org.wit.placemark.models.PlacemarkModel
@@ -37,7 +37,7 @@ class PlacemarkListPresenter(val view: PlacemarkListView) {
     }
 
     fun doShowPlacemarksMap() {
-        val launcherIntent = Intent(view, PlacemarkMapsActivity::class.java)
+        val launcherIntent = Intent(view, PlacemarkMapView::class.java)
         mapIntentLauncher.launch(launcherIntent)
     }
 

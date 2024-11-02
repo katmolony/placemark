@@ -1,6 +1,8 @@
 package org.wit.placemark.main
 
+import android.app.Activity
 import android.app.Application
+import androidx.core.splashscreen.SplashScreen
 import org.wit.placemark.models.PlacemarkJSONStore
 import org.wit.placemark.models.PlacemarkMemStore
 import org.wit.placemark.models.PlacemarkStore
@@ -17,5 +19,7 @@ class MainApp : Application() {
         // placemarks = PlacemarkMemStore()
         placemarks = PlacemarkJSONStore(applicationContext)
         i("Placemark started")
+
     }
+
 }
