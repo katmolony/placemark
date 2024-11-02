@@ -6,7 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_MEDIA_LOCATION" />
 
     <application
-        android:name="org.wit.placemark.main.MainApp"
+        android:name=".main.MainApp"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -17,10 +17,13 @@
         android:theme="@style/Theme.App.SplashScreen"
         tools:targetApi="34">
         <activity
+            android:name=".views.login.LoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".views.map.PlacemarkMapView"
             android:exported="false"
             android:label="@string/title_activity_placemark_maps"
-            android:theme="@style/Theme.Placemark"/>
+            android:theme="@style/Theme.Placemark" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -36,7 +39,6 @@
             android:theme="@style/Theme.App.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
@@ -48,7 +50,6 @@
             android:name=".views.placemark.PlacemarkView"
             android:theme="@style/Theme.Placemark"
             android:windowSoftInputMode="stateHidden|adjustPan">
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
