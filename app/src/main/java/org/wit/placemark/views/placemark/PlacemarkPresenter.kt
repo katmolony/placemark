@@ -32,7 +32,7 @@ class PlacemarkPresenter(val view: PlacemarkView) {
         registerMapCallback()
     }
 
-    fun doAddOrSave(title: String, description: String) {
+    fun doAddOrSave(title: String, description: String, rating: Int) {
         if (!ValidationHelper.isTextValid(title)) {
             view.showError("Title can only contain letters.")
             return
@@ -41,11 +41,15 @@ class PlacemarkPresenter(val view: PlacemarkView) {
             view.showError("Description can only contain letters.")
             return
         }
+        if (!ValidationHelper.isRatingValid(rating)) {
+            view.showError("Rating can only be a number between 1 to 5.")
+            return
+        }
 
         placemark.title = title
         placemark.description = description
-        placemark.title = title
-        placemark.description = description
+        placemark.rating = rating
+
         if (edit) {
             app.placemarks.update(placemark)
         } else {

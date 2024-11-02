@@ -21,11 +21,14 @@ class PlacemarkView : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
         binding = ActivityPlacemarkBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.toolbarAdd.title = title
         setSupportActionBar(binding.toolbarAdd)
+
+        // for number picker
+        binding.placemarkRating.maxValue=5
+        binding.placemarkRating.minValue=1
 
         presenter = PlacemarkPresenter(this)
 
@@ -44,8 +47,11 @@ class PlacemarkView : AppCompatActivity() {
                 Snackbar.make(binding.root, R.string.enter_placemark_title, Snackbar.LENGTH_LONG)
                     .show()
             } else {
-                // presenter.cachePlacemark(binding.placemarkTitle.text.toString(), binding.description.text.toString())
-                presenter.doAddOrSave(binding.placemarkTitle.text.toString(), binding.description.text.toString())
+                presenter.doAddOrSave(
+                    binding.placemarkTitle.text.toString(),
+                    binding.description.text.toString(),
+                    binding.placemarkRating.value
+                )
             }
         }
     }
