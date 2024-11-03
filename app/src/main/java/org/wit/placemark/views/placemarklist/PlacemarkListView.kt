@@ -47,6 +47,7 @@ class PlacemarkListView : AppCompatActivity(), PlacemarkListener {
             R.id.item_add -> { presenter.doAddPlacemark() }
             R.id.item_map -> { presenter.doShowPlacemarksMap() }
             R.id.item_login -> { presenter.doShowPlacemarkLogin() }
+            R.id.item_search -> { presenter.doSearchPlacemark() }
         }
         return super.onOptionsItemSelected(item)
     }
@@ -68,5 +69,10 @@ class PlacemarkListView : AppCompatActivity(), PlacemarkListener {
 
     fun onDelete(position : Int) {
         binding.recyclerView.adapter?.notifyItemRemoved(position)
+    }
+
+    fun updatePlacemarks(placemarks: List<PlacemarkModel>) {
+        binding.recyclerView.adapter = PlacemarkAdapter(placemarks, this)
+        onRefresh()
     }
 }
