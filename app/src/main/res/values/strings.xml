@@ -1,15 +1,15 @@
 <resources>
-    <string name="app_name">Placemark</string>
-    <string name="button_addPlacemark">Add Placemark</string>
-    <string name="save_placemark">Save Placemark</string>
-    <string name="hint_placemarkTitle">Placemark Title</string>
+    <string name="app_name">Coffee</string>
+    <string name="button_addPlacemark">Add Coffee Shop</string>
+    <string name="save_placemark">Save Coffee Shop</string>
+    <string name="hint_placemarkTitle">Coffee Shop Title</string>
     <string name="hint_placemarkDescription">Description </string>
     <string name="hint_placemarkRating">Rating </string>
     <string name="menu_addPlacemark">Add</string>
     <string name="menu_cancelPlacemark">Cancel</string>
     <string name="menu_login">Login</string>
     <string name="menu_search">Search</string>
-    <string name="enter_placemark_title"> Please enter a Placemark Title </string>
+    <string name="enter_placemark_title"> Please enter a Coffee Shop </string>
     <string name="button_addImage"> Add Image </string>
     <string name="select_placemark_image">Select image</string>
     <string name="change_placemark_image">Change image</string>
@@ -21,7 +21,7 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
-    <string name="title_activity_placemark_maps">Map of All Placemarks</string>
+    <string name="title_activity_placemark_maps">Map of All Coffee Shops</string>
     <string name="login_placemark">Login</string>
     <string name="register_placemark">Register</string>
 

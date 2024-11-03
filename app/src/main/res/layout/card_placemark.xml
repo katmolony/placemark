@@ -14,6 +14,18 @@
         android:layout_height="wrap_content"
         android:padding="16dp">
 
+        <TextView
+            android:id="@+id/description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textAlignment="viewStart"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.052"
+            app:layout_constraintStart_toEndOf="@+id/imageIcon"
+            app:layout_constraintTop_toBottomOf="@id/placemarkTitle"
+            tools:text="A Description" />
+
         <ImageView
             android:id="@+id/imageIcon"
             android:layout_width="64dp"
@@ -40,16 +52,16 @@
             tools:text="A Title" />
 
         <TextView
-            android:id="@+id/description"
+            android:id="@+id/ratingText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
+            android:text="@string/hint_placemarkRating"
             android:textAlignment="viewStart"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.052"
+            app:layout_constraintHorizontal_bias="0.715"
             app:layout_constraintStart_toEndOf="@+id/imageIcon"
-            app:layout_constraintTop_toBottomOf="@id/placemarkTitle"
-            tools:text="A Description" />
+            app:layout_constraintTop_toBottomOf="@id/placemarkTitle" />
 
         <TextView
             android:id="@+id/rating"
@@ -62,7 +74,7 @@
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/imageIcon"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="A Description" />
+            tools:text="A Rating" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
