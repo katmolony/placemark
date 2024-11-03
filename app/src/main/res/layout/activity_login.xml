@@ -33,10 +33,10 @@ tools:context=".views.login.LoginActivity">
         <EditText
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:id="@+id/username"
+            android:id="@+id/email"
             android:layout_marginTop="40dp"
             android:padding="8dp"
-            android:hint="Username"
+            android:hint="Email"
             android:textColor="@color/black"
             android:drawablePadding="8dp"/>
         <EditText
