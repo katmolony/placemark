@@ -17,7 +17,7 @@
         android:theme="@style/Theme.App.SplashScreen"
         tools:targetApi="34">
         <activity
-            android:name=".views.login.LoginActivity"
+            android:name=".views.login.LoginView"
             android:exported="true"
             android:theme="@style/Theme.App.SplashScreen">
 

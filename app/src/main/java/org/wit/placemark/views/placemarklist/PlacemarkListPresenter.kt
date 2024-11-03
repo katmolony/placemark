@@ -8,7 +8,7 @@ import org.wit.placemark.views.map.PlacemarkMapView
 import org.wit.placemark.views.placemark.PlacemarkView
 import org.wit.placemark.main.MainApp
 import org.wit.placemark.models.PlacemarkModel
-import org.wit.placemark.views.login.LoginActivity
+import org.wit.placemark.views.login.LoginView
 
 class PlacemarkListPresenter(val view: PlacemarkListView) {
 
@@ -43,7 +43,7 @@ class PlacemarkListPresenter(val view: PlacemarkListView) {
     }
 
     fun doShowPlacemarkLogin() {
-        val launcherIntent = Intent(view, LoginActivity::class.java)
+        val launcherIntent = Intent(view, LoginView::class.java)
         refreshIntentLauncher.launch(launcherIntent)
     }
 
