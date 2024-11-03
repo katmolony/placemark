@@ -63,6 +63,10 @@ class PlacemarkListPresenter(val view: PlacemarkListView) {
             .show()
     }
 
+    fun clearSearch() {
+        view.updatePlacemarks(getPlacemarks()) // Reset to all placemarks
+    }
+
     private fun filterPlacemarks(searchTerm: String) {
         val filteredPlacemarks = app.placemarks.findAll().filter {
             it.title.contains(searchTerm, ignoreCase = true) // Ignore case for search

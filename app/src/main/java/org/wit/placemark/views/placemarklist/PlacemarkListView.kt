@@ -48,6 +48,7 @@ class PlacemarkListView : AppCompatActivity(), PlacemarkListener {
             R.id.item_map -> { presenter.doShowPlacemarksMap() }
             R.id.item_login -> { presenter.doShowPlacemarkLogin() }
             R.id.item_search -> { presenter.doSearchPlacemark() }
+            R.id.item_clear_search -> { presenter.clearSearch() }
         }
         return super.onOptionsItemSelected(item)
     }

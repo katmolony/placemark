@@ -9,6 +9,13 @@
         app:showAsAction="always"/>
 
     <item
+        android:id="@+id/item_clear_search"
+        android:title="Clear Search"
+        android:icon="@android:drawable/ic_menu_close_clear_cancel"
+        app:showAsAction="ifRoom" />
+
+
+    <item
         android:id="@+id/item_add"
         android:icon="@android:drawable/ic_menu_add"
         android:title="@string/menu_addPlacemark"
