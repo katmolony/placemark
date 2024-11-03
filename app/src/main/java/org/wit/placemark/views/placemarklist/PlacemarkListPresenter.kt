@@ -20,6 +20,8 @@ class PlacemarkListPresenter(val view: PlacemarkListView) {
     private lateinit var mapIntentLauncher : ActivityResultLauncher<Intent>
     private var position: Int = 0
 
+    var isSearching: Boolean = false
+
     init {
         app = view.application as MainApp
         registerMapCallback()
@@ -58,13 +60,16 @@ class PlacemarkListPresenter(val view: PlacemarkListView) {
             .setPositiveButton("Search") { dialog, which ->
                 val searchTerm = searchEditText.text.toString()
                 filterPlacemarks(searchTerm)
+                isSearching = true
+                view.updateMenu()
             }
             .setNegativeButton("Cancel", null)
             .show()
     }
-
     fun clearSearch() {
-        view.updatePlacemarks(getPlacemarks()) // Reset to all placemarks
+        view.updatePlacemarks(getPlacemarks())
+        isSearching = false
+        view.updateMenu()
     }
 
     private fun filterPlacemarks(searchTerm: String) {

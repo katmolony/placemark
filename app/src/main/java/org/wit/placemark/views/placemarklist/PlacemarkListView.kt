@@ -39,6 +39,7 @@ class PlacemarkListView : AppCompatActivity(), PlacemarkListener {
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)
+        updateMenu()
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -51,6 +52,22 @@ class PlacemarkListView : AppCompatActivity(), PlacemarkListener {
             R.id.item_clear_search -> { presenter.clearSearch() }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    fun updateMenu() {
+        if (presenter.isSearching) {
+            binding.toolbar.menu.findItem(R.id.item_clear_search).isVisible = true
+            binding.toolbar.menu.findItem(R.id.item_add).isVisible = false
+            binding.toolbar.menu.findItem(R.id.item_map).isVisible = false
+            binding.toolbar.menu.findItem(R.id.item_login).isVisible = false
+            binding.toolbar.menu.findItem(R.id.item_search).isVisible = false
+        } else {
+            binding.toolbar.menu.findItem(R.id.item_clear_search).isVisible = false
+            binding.toolbar.menu.findItem(R.id.item_add).isVisible = true
+            binding.toolbar.menu.findItem(R.id.item_map).isVisible = true
+            binding.toolbar.menu.findItem(R.id.item_login).isVisible = true
+            binding.toolbar.menu.findItem(R.id.item_search).isVisible = true
+        }
     }
 
     override fun onPlacemarkClick(placemark: PlacemarkModel, position: Int) {
