@@ -6,6 +6,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.Marker
 import android.view.Menu
 import android.view.MenuItem
+import org.wit.placemark.R
 import com.squareup.picasso.Picasso
 import org.wit.placemark.databinding.ActivityPlacemarkMapsBinding
 import org.wit.placemark.databinding.ContentPlacemarkMapsBinding
@@ -36,12 +37,20 @@ class PlacemarkMapView : AppCompatActivity() , GoogleMap.OnMarkerClickListener{
         }
     }
 
-//    override fun onCreateOptionsMenu(menu: Menu): Boolean {
-//        menuInflater.inflate(R.menu.menu_placemark, menu)
-//        val deleteMenu: MenuItem = menu.findItem(R.id.item_delete)
-//        deleteMenu.isVisible = presenter.edit
-//        return super.onCreateOptionsMenu(menu)
-//    }
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.menu_placemark, menu)
+        val deleteMenu: MenuItem = menu.findItem(R.id.item_cancel)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.item_cancel -> {
+                presenter.doCancel()
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
 
     fun showPlacemark(placemark: PlacemarkModel) {
         contentBinding.currentTitle.text = placemark.title

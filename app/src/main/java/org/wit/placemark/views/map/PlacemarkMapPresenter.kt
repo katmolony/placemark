@@ -25,6 +25,10 @@ class PlacemarkMapPresenter(val view: PlacemarkMapView) {
         }
     }
 
+    fun doCancel() {
+        view.finish()
+    }
+
     fun doMarkerSelected(marker: Marker) {
         val tag = marker.tag as Long
         val placemark = app.placemarks.findById(tag)
