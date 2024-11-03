@@ -7,50 +7,53 @@ import com.google.android.material.snackbar.Snackbar
 import org.wit.placemark.databinding.ActivityLoginBinding
 import org.wit.placemark.main.MainApp
 import org.wit.placemark.models.UserModel
+import org.wit.placemark.views.placemark.PlacemarkPresenter
 import org.wit.placemark.views.placemarklist.PlacemarkListView
 import timber.log.Timber.i
 
 class LoginView : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
-    var user = UserModel()
     lateinit var app: MainApp
+    private lateinit var presenter: LoginPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        var edit = false
 
-        app = application as MainApp
-        i("Placemark Login started..")
+        presenter = LoginPresenter(this)
+        i("Placemark Login/Register started..")
 
-        binding.loginButton.setOnClickListener() {
-            i("add Button Pressed")
 
-            user.email = binding.email.text.toString()
-            user.password = binding.password.text.toString()
 
-            if (user.email.isNotEmpty()) {
-                i("User Added: $user")
-                app.users.create(user.copy())
-                setResult(RESULT_OK)
+        binding.loginButton.setOnClickListener {
+            val email = binding.email.text.toString()
+            val password = binding.password.text.toString()
 
-                val launcherIntent = Intent(this, PlacemarkListView::class.java)
-                startActivity(launcherIntent)
-
-                i("Add User Button Pressed: ${user}")
+            if (email.isNotEmpty() && password.isNotEmpty()) {
+                presenter.doLogin(email, password)
             } else {
-                Snackbar
-                    .make(it, "Please Enter a email", Snackbar.LENGTH_LONG)
-                    .show()
+                showMessage("Please enter both email and password")
+            }
+        }
+
+        binding.registerButton.setOnClickListener {
+            val email = binding.email.text.toString()
+            val password = binding.password.text.toString()
+            if (email.isNotEmpty() && password.isNotEmpty()) {
+                presenter.doRegister(email, password)
+            } else {
+                showMessage("Please enter both email and password")
             }
         }
     }
+
     fun navigateToPlacemarkList() {
         val launcherIntent = Intent(this, PlacemarkListView::class.java)
         startActivity(launcherIntent)
     }
+
     fun showMessage(message: String) {
         Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
     }

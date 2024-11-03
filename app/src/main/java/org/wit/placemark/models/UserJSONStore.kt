@@ -6,6 +6,7 @@ import timber.log.Timber
 
 const val JSON_USER_FILE = "users.json"
 
+
 class UserJSONStore(private val context: Context) : UserStore {
 
     var users = mutableListOf<UserModel>()
@@ -36,6 +37,14 @@ class UserJSONStore(private val context: Context) : UserStore {
             }
             serialize()
         }
+    }
+
+    override fun findByEmail(email: String): UserModel? {
+        return users.find { it.email == email }
+    }
+
+    override fun generateNextId(): Long {
+        return if (users.isEmpty()) 1L else users.maxOf { it.id } + 1
     }
 
     private fun serialize() {

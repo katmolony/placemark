@@ -10,20 +10,20 @@ internal fun getUserId(): Long {
 
 class UserMemStore : UserStore {
 
-    val users = ArrayList<UserModel>()
+    private val users = ArrayList<UserModel>()
 
     override fun findAll(): List<UserModel> {
         return users
     }
 
     override fun create(user: UserModel) {
-        user.id = getUserId()
+        user.id = generateNextId()
         users.add(user)
         logAll()
     }
 
     override fun update(user: UserModel) {
-        var foundUser: UserModel? = users.find { p -> p.id == user.id }
+        val foundUser: UserModel? = users.find { it.id == user.id }
         if (foundUser != null) {
             foundUser.email = user.email
             foundUser.password = user.password
@@ -31,7 +31,15 @@ class UserMemStore : UserStore {
         }
     }
 
-    fun logAll() {
-        users.forEach{ i("${it}") }
+    override fun findByEmail(email: String): UserModel? {
+        return users.find { it.email == email }
+    }
+
+    override fun generateNextId(): Long {
+        return lastUserId++
+    }
+
+    private fun logAll() {
+        users.forEach { i("${it}") }
     }
 }
