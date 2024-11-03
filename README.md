@@ -1,18 +1,20 @@
-#Placemark Android App
-##A Kotlin-based Android app for managing and exploring placemarks. Users can register, log in, and store placemarks with descriptions, ratings, and images, using intuitive navigation and a simple, user-friendly interface.
+# Placemark Android App
 
-##Features
-User Authentication: Users can register and log in, with data stored locally for easy access.
-Placemark Management: Users can add, edit, and delete placemarks.
-Mapping & Navigation: Users can view placemarks on a map and navigate to each location.
-Offline Storage: User and placemark data are stored locally in JSON format for offline accessibility.
-Technologies Used
-Kotlin: Core language for the app's codebase.
-Android Jetpack Components: Including RecyclerView, ViewModel, and LiveData.
-Google Maps SDK: For displaying placemarks on an interactive map.
-JSON Local Storage: UserJSONStore and PlacemarkJSONStore classes for storing user and placemark data in JSON files.
+A Kotlin-based Android app for managing and exploring placemarks. Users can register, log in, and store placemarks with descriptions, ratings, and images, using intuitive navigation and a simple, user-friendly interface.
 
-##Usage
+## Features
+- **User Authentication:** Users can register and log in, with data stored locally for easy access.
+- **Placemark Management:** Users can add, edit, and delete placemarks.
+- **Mapping & Navigation:** Users can view placemarks on a map and navigate to each location.
+- **Offline Storage:** User and placemark data are stored locally in JSON format for offline accessibility.
+
+## Technologies Used
+- **Kotlin:** Core language for the app's codebase.
+- **Android Jetpack Components:** Including RecyclerView, ViewModel, and LiveData.
+- **Google Maps SDK:** For displaying placemarks on an interactive map.
+- **JSON Local Storage:** UserJSONStore and PlacemarkJSONStore classes for storing user and placemark data in JSON files.
+
+## Usage
 1. Register & Login
 Register with an email and password, or log in with existing credentials.
 User data is stored in JSON format using UserJSONStore.
