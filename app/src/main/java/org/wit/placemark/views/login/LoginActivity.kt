@@ -25,6 +25,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        var edit = false
 
         app = application as MainApp
         i("Placemark Login started..")
@@ -37,14 +38,13 @@ class LoginActivity : AppCompatActivity() {
 
             if (user.email.isNotEmpty()) {
                 i("User Added: $user")
-                app.users.add(user.copy())
+                app.users.create(user.copy())
+                setResult(RESULT_OK)
 
                 val launcherIntent = Intent(this, PlacemarkListView::class.java)
                 startActivity(launcherIntent)
 
                 i("Add User Button Pressed: ${user}")
-                for (i in this.app.users.indices)
-                { i("Users[$i]:${this.app.users[i]}") }
             } else {
                 Snackbar
                     .make(it, "Please Enter a email", Snackbar.LENGTH_LONG)

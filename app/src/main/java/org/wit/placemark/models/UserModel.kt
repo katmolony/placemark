@@ -1,3 +1,8 @@
 package org.wit.placemark.models
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
-data class UserModel(var email: String = "",var password: String = "")
+@Parcelize
+data class UserModel(var id: Long = 0,
+                     var email: String = "",
+                     var password: String = "") : Parcelable
